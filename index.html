@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Astrology Prediction</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>Astrology Prediction Website</h1>
+  <p>Please fill in the details below to receive your personalized astrology guidance.</p>
+
+  <form id="astrologyForm" novalidate>
+
+    <label>
+      Full Name
+      <input type="text" id="name" name="name">
+      <span class="error" id="nameError"></span>
+    </label>
+    <br><br>
+
+    <label>
+      Date of Birth
+      <input type="date" id="dob" name="dob">
+      <span class="error" id="dobError"></span>
+    </label>
+    <br><br>
+
+    <label>
+      Time of Birth (Optional)
+      <input type="time" id="time" name="time">
+    </label>
+    <br><br>
+
+    <label>
+      Gender (Optional)
+      <select id="gender" name="gender">
+        <option value="">Select</option>
+        <option>Male</option>
+        <option>Female</option>
+        <option>Prefer not to say</option>
+      </select>
+    </label>
+    <br><br>
+
+    <label>
+      Area of Focus
+      <select id="focus" name="focus">
+        <option value="">Select</option>
+        <option>Career</option>
+        <option>Health</option>
+        <option>Relationships</option>
+        <option>Education</option>
+        <option>General Life</option>
+      </select>
+      <span class="error" id="focusError"></span>
+    </label>
+    <br><br>
+
+    <label>
+      Email Address
+      <input type="email" id="email" name="email">
+      <span class="error" id="emailError"></span>
+    </label>
+    <br><br>
+
+    <button type="submit">Get Prediction</button>
+
+  </form>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
