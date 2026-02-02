@@ -47,24 +47,41 @@ form.addEventListener("submit", async (e) => {
   statusText.textContent = "Sending request...";
 
   try {
+    const formData = {
+      name,
+      dob,
+      time,
+      gender,
+      focus,
+      email,
+    };
+  
     const response = await fetch(
-      "https://chandan-astrology.app.n8n.cloud/webhook/astrology",
+      "https://chandan-astrology.app.n8n.cloud/webhook/astrology-prediction",
       {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, dob, time, gender, focus, email })
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       }
     );
-
-    if (!response.ok) throw new Error();
-
-    statusText.textContent =
-      "Prediction sent successfully! Please check your email.";
+  
+    if (!response.ok) {
+      throw new Error("Request failed");
+    }
+  
+    await response.text(); // IMPORTANT for n8n
+  
+    statusText.innerText =
+      "Prediction request sent successfully! Check your email.";
     form.reset();
-  } catch {
-    statusText.textContent =
-      "Something went wrong. Please try again.";
+  } catch (error) {
+    statusText.innerText =
+      "Something went wrong. Please try again later.";
+    console.error(error);
   } finally {
     submitBtn.disabled = false;
   }
+
 });
