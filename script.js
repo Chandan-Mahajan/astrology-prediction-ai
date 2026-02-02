@@ -53,25 +53,23 @@ form.addEventListener("submit", async (e) => {
       time,
       gender,
       focus,
-      email,
+      email
     };
   
     const response = await fetch(
-      "https://chandan-astrology.app.n8n.cloud/webhook/astrology-prediction",
+      "https://chandan-astrology.app.n8n.cloud/webhook/astrology",
       {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(formData)
       }
     );
   
     if (!response.ok) {
       throw new Error("Request failed");
     }
-  
-    await response.text(); // IMPORTANT for n8n
   
     statusText.innerText =
       "Prediction request sent successfully! Check your email.";
@@ -83,5 +81,4 @@ form.addEventListener("submit", async (e) => {
   } finally {
     submitBtn.disabled = false;
   }
-
 });
