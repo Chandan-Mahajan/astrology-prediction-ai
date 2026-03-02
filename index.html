@@ -1,76 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Astrology Prediction</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
-  <h1>Astrology Prediction Website</h1>
-  <p>Please fill in the details below to receive your personalized astrology guidance.</p>
+<header class="nav">
+  <h1 class="logo">🔮 AstroVision</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="prediction.html">Prediction</a>
+    <a href="about.html">About</a>
+  </nav>
+</header>
 
-  <form id="astrologyForm" novalidate>
+<section class="hero">
+  <div class="hero-content fade-in">
+    <h2>Unlock Your Cosmic Path</h2>
+    <p>Personalized astrology insights powered by AI & cosmic intelligence.</p>
+    <a href="prediction.html" class="cta-btn">Get Your Prediction</a>
+  </div>
+</section>
 
-    <div class="form-group">
-      <label>Full Name <span class="required">*</span></label>
-      <input type="text" id="name" placeholder="Enter your full name">
-      <span class="error" id="nameError"></span>
-    </div>
+<section class="features">
+  <div class="feature-card fade-in">
+    <h3>✨ Personalized Insights</h3>
+    <p>Predictions tailored to your birth details.</p>
+  </div>
+  <div class="feature-card fade-in">
+    <h3>🧠 AI Powered</h3>
+    <p>LLMs generate meaningful astrological guidance.</p>
+  </div>
+  <div class="feature-card fade-in">
+    <h3>⚙️ Automated Workflow</h3>
+    <p>Secure automation via n8n.</p>
+  </div>
+</section>
 
-    <div class="form-group">
-      <label>Date of Birth <span class="required">*</span></label>
-      <input type="date" id="dob">
-      <span class="error" id="dobError"></span>
-    </div>
+<footer>
+  <p>© 2026 AstroVision. Guidance only, not professional advice.</p>
+</footer>
 
-    <div class="form-group">
-      <label>Time of Birth (Optional)</label>
-      <input type="time" id="time">
-    </div>
+<script src="script.js"></script>
 
-    <div class="form-group">
-      <label>Gender (Optional)</label>
-      <select id="gender">
-        <option value="">Select</option>
-        <option>Male</option>
-        <option>Female</option>
-        <option>Prefer not to say</option>
-      </select>
-    </div>
+<canvas id="particles"></canvas>
 
-    <div class="form-group">
-      <label>Area of Focus <span class="required">*</span></label>
-      <select id="focus">
-        <option value="">Select</option>
-        <option>Career</option>
-        <option>Health</option>
-        <option>Relationships</option>
-        <option>Education</option>
-        <option>General Life</option>
-      </select>
-      <span class="error" id="focusError"></span>
-    </div>
+<script>
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
 
-    <div class="form-group">
-      <label>Email Address <span class="required">*</span></label>
-      <input type="email" id="email" placeholder="example@gmail.com">
-      <span class="error" id="emailError"></span>
-    </div>
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-    <button type="submit" id="submitBtn">
-      Get My Astrology Prediction
-    </button>
-    
+let particles = [];
 
-    <p id="status"></p>
-  </form>
+for (let i = 0; i < 80; i++) {
+  particles.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    radius: Math.random() * 2,
+    dx: Math.random() * 0.5,
+    dy: Math.random() * 0.5
+  });
+}
 
-  <p class="disclaimer">
-    Disclaimer: Astrology guidance is for informational purposes only.
-  </p>
+function animateParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  <script src="script.js"></script>
+  ctx.fillStyle = "rgba(138,92,246,0.5)";
+
+  particles.forEach(p => {
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+    ctx.fill();
+
+    p.x += p.dx;
+    p.y += p.dy;
+
+    if (p.x > canvas.width) p.x = 0;
+    if (p.y > canvas.height) p.y = 0;
+  });
+
+  requestAnimationFrame(animateParticles);
+}
+
+animateParticles();
+</script>
+<div class="glow-orb"></div>
 </body>
+
 </html>
