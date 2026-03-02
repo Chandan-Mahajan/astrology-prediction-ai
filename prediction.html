@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Get Prediction</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<header class="nav">
+  <h1 class="logo">🔮 AstroVision</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="prediction.html">Prediction</a>
+    <a href="about.html">About</a>
+  </nav>
+</header>
+
+<section class="form-section fade-in">
+  <h2>Your Astrology Prediction</h2>
+
+  <form id="astroForm" class="glass-card">
+    <input id="name" placeholder="Full Name" required />
+    <input id="dob" type="date" required />
+    <input id="time" type="time" />
+    
+    <select id="gender">
+      <option value="">Gender (Optional)</option>
+      <option>Male</option>
+      <option>Female</option>
+    </select>
+
+    <select id="focus" required>
+      <option value="">Area of Focus</option>
+      <option>Career</option>
+      <option>Education</option>
+      <option>Health</option>
+      <option>Relationships</option>
+    </select>
+
+    <input id="email" type="email" placeholder="Email Address" required />
+    
+    <button type="submit">Get My Prediction</button>
+    <p id="status"></p>
+  </form>
+</section>
+
+<footer>
+  <p>Astrology guidance is for informational purposes only.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
