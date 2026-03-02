@@ -1,43 +1,43 @@
-const form = document.getElementById("astrologyForm");
-const statusText = document.getElementById("status");
+const form = document.getElementById("astroForm");
+const statusEl = document.getElementById("status");
 
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
+if (form) {
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-  const formData = {
-    name: document.getElementById("name").value.trim(),
-    email: document.getElementById("email").value.trim(),
-    dob: document.getElementById("dob").value,
-    timeOfBirth:
-      document.getElementById("time").value || "Not provided",
-    areaOfFocus: document.getElementById("focus").value,
-    gender:
-      document.getElementById("gender").value || "Not specified",
-  };
+    const data = {
+      full_name: document.getElementById("name").value,
+      date_of_birth: document.getElementById("dob").value,
+      time_of_birth: document.getElementById("time").value,
+      gender: document.getElementById("gender").value,
+      area_of_focus: document.getElementById("focus").value,
+      email: document.getElementById("email").value,
+    };
 
-  statusText.innerText = "Sending request...";
+    statusEl.innerText = "Sending...";
 
-  fetch("https://chandan-astrology.app.n8n.cloud/webhook/astrology-prediction", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(formData),
-  })
-    .then((response) => {
+    try {
+      const response = await fetch(
+        "https://astrologyguide.app.n8n.cloud/webhook/astrology-prediction",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
+
       if (!response.ok) {
         throw new Error("Request failed");
       }
-      return response.json();
-    })
-    .then(() => {
-      statusText.innerText =
-        "Prediction request sent successfully! Check your email.";
-      form.reset();
-    })
-    .catch((error) => {
-      console.error(error);
-      statusText.innerText =
-        "Something went wrong. Please try again.";
-    });
-});
+
+      await response.text(); // if n8n expects the body to be read
+
+      statusEl.innerText = "Prediction request sent successfully! Check your email.";
+    } catch (error) {
+      console.error("Error:", error);
+      statusEl.innerText = "Something went wrong. Please try again later.";
+    }
+  });
+}
