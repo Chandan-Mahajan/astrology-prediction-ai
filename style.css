@@ -1,92 +1,275 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
 body {
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background: linear-gradient(120deg, #e0eafc, #cfdef3);
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
+  /* Base page layout defaults (background set later for animation). */
+  color: #eaeaf0;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+  align-items: center;
+}
+
+.nav a {
+  color: #b8c1ff;
+  margin-left: 20px;
+  text-decoration: none;
+}
+
+.nav a:hover {
+  color: #ffffff;
+}
+
+.logo {
+  color: #fff;
+}
+
+.hero {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 24px;
+}
+
+.hero-content {
+  text-align: center;
+  max-width: 600px;
+}
+
+.hero-content h2 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.cta-btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 14px 32px;
+  background: linear-gradient(135deg, #7f7cff, #b38cff);
+  color: #fff;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform;
+}
+
+.cta-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(138, 92, 246, 0.5);
+  animation-play-state: paused;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  padding: 60px;
+}
+
+.feature-card,
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 30px;
+}
+
+.about {
+  padding: 60px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.about h2 {
+  margin-bottom: 12px;
+}
+
+.about p {
+  opacity: 0.95;
+  line-height: 1.6;
+}
+
+.about ul {
+  margin-top: 16px;
+  padding-left: 20px;
+  line-height: 1.8;
+}
+
+.form-section {
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.glass-card {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+input, select, button {
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+}
+
+button {
+  background: linear-gradient(135deg, #7f7cff, #b38cff);
+  color: white;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform;
+}
+
+.btn {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform;
+}
+
+button:hover, .btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(138, 92, 246, 0.5);
+  animation-play-state: paused;
+}
+
+.fade-in {
+  animation: fade 1s ease forwards;
+}
+
+@keyframes fade {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  opacity: 0.7;
+}
+
+/* Floating button animation */
+button, .btn, .cta-btn {
+  animation: floatButton 3s ease-in-out infinite;
+}
+
+@keyframes floatButton {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Logo glow animation */
+.logo {
+  animation: glowText 3s ease-in-out infinite alternate;
+}
+
+h1.logo {
+  animation: fadeSlideUp 1s ease both, glowText 3s ease-in-out infinite alternate;
+}
+
+@keyframes glowText {
+  from {
+    text-shadow: 0 0 5px #8a5cf6;
   }
-  
-  h1 {
-    text-align: center;
-    margin-top: 40px;
-    color: #32406b;
+  to {
+    text-shadow: 0 0 20px #8a5cf6, 0 0 30px #8a5cf6;
   }
-  
-  p {
-    text-align: center;
-    color: #555;
+}
+
+/* Smooth appearance for headings */
+h2, h3 {
+  animation: fadeSlideUp 1s ease both;
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
   }
-  
-  form {
-    background: #fff;
-    max-width: 420px;
-    margin: 30px auto;
-    padding: 28px;
-    border-radius: 16px;
-    box-shadow: 0 6px 28px rgba(0,0,0,0.12);
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 14px;
+}
+
+#particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Animated gradient background */
+body {
+  background:
+    radial-gradient(circle at top, rgba(127, 124, 255, 0.18), rgba(11, 15, 42, 0) 55%),
+    linear-gradient(-45deg, #0b0f2a, #1a1f4a, #0b0f2a, #1f1147);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite, fadeInPage 1.2s ease;
+  color: #eaeaf0;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
   }
-  
-  label {
-    font-weight: 500;
-    margin-bottom: 6px;
-    color: #2a3353;
+  50% {
+    background-position: 100% 50%;
   }
-  
-  input, select {
-    padding: 10px;
-    border: 1px solid #dde3ed;
-    border-radius: 6px;
-    font-size: 1rem;
+  100% {
+    background-position: 0% 50%;
   }
-  
-  input:focus, select:focus {
-    border-color: #4a6cf7;
-    outline: none;
+}
+
+/* Floating glowing orb */
+.glow-orb {
+  position: fixed;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(138,92,246,0.4), transparent);
+  border-radius: 50%;
+  filter: blur(80px);
+  animation: floatOrb 10s infinite ease-in-out;
+  z-index: -1;
+}
+
+@keyframes floatOrb {
+  0% {
+    transform: translate(10%, 10%);
   }
-  
-  button {
-    width: 100%;
-    padding: 12px;
-    margin-top: 16px;
-    background: linear-gradient(90deg, #5472ff, #4857ea);
-    color: white;
-    font-size: 1rem;
-    font-weight: 600;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
+  50% {
+    transform: translate(80%, 60%);
   }
-  
-  button:disabled {
-    background: #999;
-    cursor: not-allowed;
+  100% {
+    transform: translate(10%, 10%);
   }
-  
-  .error {
-    color: #d93025;
-    font-size: 13px;
+}
+
+@keyframes fadeInPage {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
   }
-  
-  .required {
-    color: #d93025;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  #status {
-    margin-top: 12px;
-    text-align: center;
-    font-weight: 500;
-  }
-  
-  .disclaimer {
-    text-align: center;
-    font-size: 12px;
-    color: #666;
-    margin-bottom: 20px;
-  }
-  
+}
