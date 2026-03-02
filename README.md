@@ -52,4 +52,4 @@ Chandan Mahajan
 Academic Integrity Declaration
 This project is an original work created individually.
 AI tools were used as assistants, not as replacements for understanding or development.
-I am able to fully explain all parts of this project during evaluation.
+I am able to fully explain all parts of this project.
